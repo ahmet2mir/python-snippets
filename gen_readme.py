@@ -46,8 +46,7 @@ body = "\n"
 footer = """
 ## License
 
-Licensed under the [Apache License](http://en.wikipedia.org/wiki/Apache_License)
-, Version 2.0 (the "License"); you may
+Licensed under the Apache License, Version 2.0 (the "License"); you may
 not use this file except in compliance with the License. You may obtain
 a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
 
@@ -66,8 +65,14 @@ for snippet in snippets.__all__:
 
 	print("Snippet:", snippet)
 	m = importlib.import_module("snippets." + snippet)
-	title = snippet.capitalize().replace('_', ' ').strip()
-	anchor = title.lower().replace(' ', '-')
+
+	raw = "https://raw.githubusercontent.com/ahmet2mir/python-snippets/"\
+	      "master/snippets/{0}.py".format(snippet)
+
+	title_summary = snippet.capitalize().replace('_', ' ').strip()
+	title =  title_summary + " ([download]({0}))".format(raw)
+
+	anchor = title_summary.lower().replace(' ', '-')
 
 	sumas = ""
 	for line in m.__doc__.split("\n"):
@@ -76,10 +81,13 @@ for snippet in snippets.__all__:
 			break
 	suma = sumas.strip().replace("\n", " ")
 	print("    summary:", suma)
+	
 
-	summary += "* [{0}](#{1}): {2}\n".format(title, anchor, suma)
+	summary += "* [{0}](#{1}): {2} ([download]({3}))\n"\
+	           .format(title_summary, anchor, suma, raw)
 
-	body +="## {0}\n\n{1}".format(title, m.__doc__)
+	body +="## {0}\n([download]({1}))\n\n{2}"\
+	       .format(title_summary, raw, m.__doc__)
 
 
 with open('README.md', 'w') as fd:
