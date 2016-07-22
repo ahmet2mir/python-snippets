@@ -30,23 +30,25 @@ requirements:
 author: Ahmet Demir <me@ahmet2mir.eu>
 
 Example:
-
-    >>> data = {
-            "key1": {
-                "key11": {
-                    "key111": "value111"
-                },
-                "key12": {
-                    "key121": "value121"
-                }
+    
+```python
+>>> data = {
+        "key1": {
+            "key11": {
+                "key111": "value111"
             },
-            "key2": ["one","two", "three"]
-        }
+            "key12": {
+                "key121": "value121"
+            }
+        },
+        "key2": ["one","two", "three"]
+    }
 
-    >>> print(flat(data))
-    {'key2': ['one', 'two', 'three'],
-     'key1_key12_key121': 'value121',
-     'key1_key11_key111': 'value111'}
+>>> print(flat(data))
+{'key2': ['one', 'two', 'three'],
+ 'key1_key12_key121': 'value121',
+ 'key1_key11_key111': 'value111'}
+```
 
 In this case the list is not flat beacause you probably
 wan't to make another work like a join on it.
@@ -54,48 +56,56 @@ wan't to make another work like a join on it.
 If you wan't a "real" flat, use the param `full`.
 The key will be append with the item position number in bracket.
 
-    >>> print(flat(data, full=True))
-    {'key1_key11_key111': 'value111',
-     'key1_key12_key121': 'value121',
-     'key2[1]': 'two',
-     'key2[2]': 'three',
-     'key2[0]': 'one'}
+```python
+>>> print(flat(data, full=True))
+{'key1_key11_key111': 'value111',
+ 'key1_key12_key121': 'value121',
+ 'key2[1]': 'two',
+ 'key2[2]': 'three',
+ 'key2[0]': 'one'}
+```
 
 Of course the separator could be customized with `separator` param.
 Example, if you prefer the dot
 
-    >>> print(flat(data, full=True, separator="."))
-    {'key1.key11.key111': 'value111',
-     'key1.key12.key121': 'value121',
-     'key2[1]': 'two',
-     'key2[2]': 'three',
-     'key2[0]': 'one'}
+```python
+>>> print(flat(data, full=True, separator="."))
+{'key1.key11.key111': 'value111',
+ 'key1.key12.key121': 'value121',
+ 'key2[1]': 'two',
+ 'key2[2]': 'three',
+ 'key2[0]': 'one'}
+```
 
 You could also use different separator for the full flat
 with param `lseparator`
 
-    >>> print(flat(data, full=True, lseparator=('{', '}')))
-    {'key1_key11_key111': 'value111',
-     'key1_key12_key121': 'value121',
-     'key2{1}': 'two',
-     'key2{0}': 'one',
-     'key2{2}': 'three'}
+```python
+>>> print(flat(data, full=True, lseparator=('{', '}')))
+{'key1_key11_key111': 'value111',
+ 'key1_key12_key121': 'value121',
+ 'key2{1}': 'two',
+ 'key2{0}': 'one',
+ 'key2{2}': 'three'}
+```
 
 And finally, unflat it:
 
-    >>> flat_data = flat(data, full=True)
-    >>> print(unflat(flat_data))
-    {
-        'key1': {
-            'key11': {
-                'key111': 'value111'
-            },
-            'key12': {
-                'key121': 'value121'
-            }
+```python
+>>> flat_data = flat(data, full=True)
+>>> print(unflat(flat_data))
+{
+    'key1': {
+        'key11': {
+            'key111': 'value111'
         },
-        'key2': ['one', 'two', 'three']
-    }
+        'key12': {
+            'key121': 'value121'
+        }
+    },
+    'key2': ['one', 'two', 'three']
+}
+```
 
 """
 import re
