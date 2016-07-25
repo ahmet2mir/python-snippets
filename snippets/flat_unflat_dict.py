@@ -152,16 +152,15 @@ def flat(data, prefix=None, separator='_', full=False,\
     Flat the dict
 
     Args:
-        data (dict): the dict to unflat. Must be a key/value dict.
+        data (dict): the dict to flat. Must be a key/value dict.
         separator (:obj:`str`, optional): key separator, defaults is _
         prefix (:obj:`str`, optional): prefix key with a string value,
             defaults is None
         lseparatort (:obj:`tuple`, optional): tuple of bracket for
             full flat, defaults is ('[', ']').
 
-
     Returns:
-        dict: Unflatted dict
+        dict: flatted dict
     """
     items = []
     for k in sorted(data.keys()):
