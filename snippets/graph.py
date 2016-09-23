@@ -11,9 +11,8 @@
 #    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 #    License for the specific language governing permissions and limitations
 #    under the License.
-"""
-Generate a graph based on defined dict struct in a list
-and Jinja var management. The Graph is a dict.
+"""Generate a graph based on defined dict struct in a list
+ and Jinja var management. The Graph is a dict.
 
 Sometimes, I have to build a graph using a list of "resources" and
 thoses resources could be dependent of each other.
