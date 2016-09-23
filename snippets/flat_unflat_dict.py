@@ -25,12 +25,12 @@ python:
 
 requirements:
 
-- tox
+- tox # for tests
 
 author: Ahmet Demir <me@ahmet2mir.eu>
 
 Example:
-    
+
 ```python
 >>> data = {
         "key1": {
